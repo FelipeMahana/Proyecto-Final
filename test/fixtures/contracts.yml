@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weight: 1.5
+  height: 1.5
+  activity_level: 1
+  goal: MyText
+  fat_percentage: 1.5
+  bmi: 1.5
+  disease: MyString
+  allergies: MyString
+  bmr: 1.5
+  karvonen: MyString
+  heart_rate: 1
+  user: one
+  plan: one
+
+two:
+  weight: 1.5
+  height: 1.5
+  activity_level: 1
+  goal: MyText
+  fat_percentage: 1.5
+  bmi: 1.5
+  disease: MyString
+  allergies: MyString
+  bmr: 1.5
+  karvonen: MyString
+  heart_rate: 1
+  user: two
+  plan: two
