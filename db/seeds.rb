@@ -25,3 +25,6 @@ Plan.create(price: 160, duration: 3, contract_type: 2, description: Faker::Lorem
 
 #plan 3 meses entrenamiento y nutricion
 Plan.create(price: 300, duration: 3, contract_type: 3, description: Faker::Lorem.paragraph)
+
+
+

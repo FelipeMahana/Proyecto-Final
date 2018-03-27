@@ -13,7 +13,9 @@ class ContractsController < ApplicationController
 	end
 
 	def show
-
+		#prueba de mostrar los usuarios con sus contratos respectivos
+		#@user = User.all
+		#me di cuenta que no funciona, en contract controller necesita id del plan y contrato, tiene que ser en algun index, posiblemente el de index
 	end
 
 	def update
