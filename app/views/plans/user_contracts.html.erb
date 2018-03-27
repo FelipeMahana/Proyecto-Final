@@ -6,6 +6,7 @@
       <th>Plan</th>
       <th>Fecha Contrato</th>
       <th>Duracion Plan(mes)</th>
+      <th>Fecha Termino Plan</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -31,19 +32,23 @@
 
           <td>
               <% unless user.contracts.last.nil? %>
-                <%= a=user.contracts.last.created_at %>
+                <% start_date_conract=user.contracts.last.created_at %>
+                <%= user.contracts.last.created_at.strftime('%d/%m/%Y') %>
               <% end %>
           </td>
 
           <td>
             <% unless user.contracts.last.nil? %>
               <% unless user.contracts.last.plan.nil? %>
-                <%= b=user.contracts.last.plan.duration.month %>
+                <% duration_plans_mont=user.contracts.last.plan.duration.month %>
+                <%= user.contracts.last.plan.duration %>
               <% end %>
             <% end %>
           </td>
 
-          <td> <%= a+b  %> </td>
+          <td>
+            <% end_date_contract=(start_date_conract+duration_plans_mont)%> 
+            <%= end_date_contract.strftime('%d/%m/%Y')  %> </td>
 
           <td><%= link_to "Hola, realizar rutina"%></td>
         </tr>
