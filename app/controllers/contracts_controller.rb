@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-	before_action :authenticate_user!, only: [:new]
+	before_action :authenticate_user!, only: [:new, :edit, :show]
 	before_action :set_params, only: [:create, :update]
 	before_action :set_plan, only: [:new, :edit, :update]
 	before_action :set_contract, only: [:edit, :show, :update]
@@ -39,7 +39,7 @@ class ContractsController < ApplicationController
 	private
 
 	def set_params
-		params.require(:contract).permit(:weight, :height,  :activity_level, :bmi, :disease, :allergies, :bmr, :karvonen, :heart_rate, :commit, :goal, :fat_percentage, :plan_id)
+		params.require(:contract).permit(:weight, :height, :age, :sex, :activity_level, :bmi, :disease, :allergies, :bmr, :karvonen, :heart_rate, :commit, :goal, :fat_percentage, :plan_id)
 	end
 
 	def set_contract

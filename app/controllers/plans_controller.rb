@@ -1,12 +1,14 @@
 class PlansController < ApplicationController
-  #before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:user_contracts]
   def index
   	@plans = Plan.all
   end
 
+  def profile
+  	@user = current_user
+  end
+
   def user_contracts
   	@users = User.all
-  	#Ultimo contrato del usuario con id x
-  	#@contarct = Contract.where(user_id: x).last
   end
 end

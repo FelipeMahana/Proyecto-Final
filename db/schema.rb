@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316023600) do
+ActiveRecord::Schema.define(version: 20180331232745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20180316023600) do
     t.bigint "plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "age"
+    t.integer "sex"
     t.index ["plan_id"], name: "index_contracts_on_plan_id"
     t.index ["user_id"], name: "index_contracts_on_user_id"
   end
@@ -44,6 +46,15 @@ ActiveRecord::Schema.define(version: 20180316023600) do
     t.integer "discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "programs", force: :cascade do |t|
+    t.bigint "contract_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "training"
+    t.text "nutrition"
+    t.index ["contract_id"], name: "index_programs_on_contract_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,4 +79,5 @@ ActiveRecord::Schema.define(version: 20180316023600) do
 
   add_foreign_key "contracts", "plans"
   add_foreign_key "contracts", "users"
+  add_foreign_key "programs", "contracts"
 end

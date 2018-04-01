@@ -1,4 +1,5 @@
-<h4>Tabla con usuarios con sus planes contratados</h4> 
+<h4>Tabla con usuarios con sus planes contratados</h4>
+<h5>Pensar el orden</h5> 
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -12,7 +13,8 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <!-- En que orden si creciente o decreciente -->
+    <% @users.order("created_at").each do |user| %>
       <% if user.contracts.present? %>        
         <tr>
           <% if user.name.present? %>
@@ -23,7 +25,14 @@
           <td>
             <% unless user.contracts.last.nil? %>
               <% unless user.contracts.last.plan.nil? %>
-                <%= user.contracts.last.plan.description %>
+                <%#= user.contracts.last.plan.contract_type %>
+                <% if user.contracts.last.plan.contract_type == 1%>
+                  Plan Entrenamiento 
+                <% elsif user.contracts.last.plan.contract_type == 2 %>
+                  Plan Nutricional 
+                <% else %>
+                  Plan Entrenamiento y Nutricion 
+                <% end %>
               <% end %>
             <% end %>   
           </td>
@@ -50,7 +59,14 @@
             <% end_date_contract=(start_date_conract+duration_plans_mont)%> 
             <%= end_date_contract.strftime('%d/%m/%Y')  %> </td>
 
-          <td><%= link_to "Hola, realizar rutina"%></td>
+          <td>
+             <!-- revisar parametros -->
+            <%= user.contracts.last.plan.id %>
+            <%= user.contracts.last.id %>
+            <%= user.id %>
+            
+            <%= link_to "Realizar programa", plan_contract_user_programs_path(user.contracts.last.plan.id,user.contracts.last.id,user.id) %>
+            </td>
         </tr>
       <% end %>      
     <% end %>
