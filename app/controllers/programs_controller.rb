@@ -15,7 +15,6 @@ class ProgramsController < ApplicationController
         @program.contract_id = params[:contract_id]
         #@program.user_id = params[:user_id]
     	@program.save
-        raise
     	if @program.save
              redirect_to user_contracts_path, notice: 'Se creo programa con exito'
         else

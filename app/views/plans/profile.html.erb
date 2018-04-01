@@ -1,3 +1,21 @@
-<%= current_user.name %>
+<h3>Perfil</h3>
 
-<%= current_user.contracts.last.programs.training %>
+<% if current_user.name.present? %>
+	<h5>  <%= current_user.name %> </h5>
+<% else %>
+	<h5>  <%= current_user.email %> </h5>
+<% end %>
+
+<% if current_user.contracts.last.plan.contract_type==1 %>
+	<h5>Rutina entrenamiento</h5>
+	<%= current_user.contracts.last.programs.last.training %>
+<% elsif current_user.contracts.last.plan.contract_type==2 %>
+	<h5>Plan Nutricional</h5>
+	<%= current_user.contracts.last.programs.last.nutrition %>
+<% else %>
+	<h5>Rutina entrenamiento</h5>
+	<%= current_user.contracts.last.programs.last.training %>
+	<h5>Plan Nutricional</h5>
+	<%= current_user.contracts.last.programs.last.nutrition %>
+<% end %>
+

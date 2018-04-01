@@ -1,11 +1,11 @@
 class PlansController < ApplicationController
-  before_action :authenticate_user!, only: [:user_contracts]
+  before_action :authenticate_user!, only: [:user_contracts, :profile]
   def index
   	@plans = Plan.all
   end
 
   def profile
-  	@user = current_user
+  	
   end
 
   def user_contracts
