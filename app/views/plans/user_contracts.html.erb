@@ -13,9 +13,11 @@
   </thead>
 
   <tbody>
-    <!-- En que orden si creciente o decreciente -->
+    <!-- En que orden hacerlo, si creciente o decreciente, el pending es para ver a quien no se a echo rutina -->
     <% @users.order("created_at").each do |user| %>
-      <% if user.contracts.present? %>        
+      <% if user.contracts.present? %>
+      <%# if user.contracts.present? and user.contracts.last.pending == true %>
+      <%= user.contracts.last.pending %>        
         <tr>
           <% if user.name.present? %>
             <td><%= user.name %></td>
@@ -25,7 +27,6 @@
           <td>
             <% unless user.contracts.last.nil? %>
               <% unless user.contracts.last.plan.nil? %>
-                <%#= user.contracts.last.plan.contract_type %>
                 <% if user.contracts.last.plan.contract_type == 1%>
                   Plan Entrenamiento 
                 <% elsif user.contracts.last.plan.contract_type == 2 %>
@@ -57,7 +58,8 @@
 
           <td>
             <% end_date_contract=(start_date_conract+duration_plans_mont)%> 
-            <%= end_date_contract.strftime('%d/%m/%Y')  %> </td>
+            <%= end_date_contract.strftime('%d/%m/%Y')  %> 
+          </td>
 
           <td>
              <!-- revisar parametros -->
@@ -65,7 +67,7 @@
             <%= user.contracts.last.id %>
             <%= user.id %>
             
-            <%= link_to "Realizar programa", plan_contract_user_programs_path(user.contracts.last.plan.id,user.contracts.last.id,user.id) %>
+            <%= link_to "Realizar programa", new_plan_contract_user_program_path(user.contracts.last.plan.id,user.contracts.last.id,user.id) %>
             </td>
         </tr>
       <% end %>      

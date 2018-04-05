@@ -13,9 +13,7 @@ class ContractsController < ApplicationController
 	end
 
 	def show
-		#prueba de mostrar los usuarios con sus contratos respectivos
-		#@user = User.all
-		#me di cuenta que no funciona, en contract controller necesita id del plan y contrato, tiene que ser en algun index, posiblemente el de index
+		
 	end
 
 	def update
@@ -28,6 +26,8 @@ class ContractsController < ApplicationController
 		@contract = Contract.new(set_params)
 		@contract.plan_id = params[:plan_id]
 		@contract.user_id = current_user.id
+		# segun flujo debe ir el true en update, ya que este es el que se ocupa, para confirmar datos, o en el futuro debe ser en el de paypal?
+		@contract.pending = true
 		@contract.save
 		if @contract.save
              redirect_to edit_plan_contract_path(@contract.plan.id, @contract), notice: 'Se creo contrato con exito'

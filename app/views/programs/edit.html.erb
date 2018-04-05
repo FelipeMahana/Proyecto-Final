@@ -1,0 +1,98 @@
+<h5>Hola</h5>
+
+<% if @plan.contract_type == 1%>
+	<h3>Realización de Plan Entrenamiento</h3>
+<% elsif @plan.contract_type == 2 %>
+	<h3>Realización de Plan Nutricional </h3>
+<% else %>
+	<h3>Realización de Plan Entrenamiento y nutricion</h3> 
+<% end %>
+
+
+<div class="row">
+	<div class="col-md-4 mb-4">
+		<div class="card">
+			<div class="card-body text-center">
+				<% if @user.name.present? %>
+					<h5 class="card-title"> <%= @user.name %> </h5>
+				<% else %>
+					<h5 class="card-title"> <%= @user.email %> </h5>
+				<% end %>
+				<p class="card-title">Objetivo: <%= @contract.goal %> </p>
+				<p class="card-text">Tipo plan: </p>
+				<p class="card-text">Duracion plan: </p>
+				<p class="card-text">Descripcion o tipo(?): <%= @plan.description %> </p>
+		 	</div>
+		</div>		  
+	</div>
+	<div class="offset-md-2 col-md-4 mb-4">
+		<div class="card">
+			<div class="card-body text-center">
+				<h5 class="card-title"> Datos Cliente </h5>
+				<p class="card-title">Edad: <%= @contract.age %> </p>
+				<% if @contract.sex == 1 %>
+					<p class="card-title">Sexo: Masculino </p>
+				<% else %>
+					<p class="card-title">Sexo: Femenino </p>
+				<% end %>
+				<p class="card-text">Peso: <%= @contract.weight %> kg </p>
+				<p class="card-text">Estatura: <%= @contract.height %> cms </p>
+				<p class="card-text">BMR: <%= @contract.bmr %> Kcal</p>
+				<p class="card-text">Actividad Fisica: <%= @contract.activity_level %> </p>
+		 	</div>
+		</div>		  
+	</div>
+</div>
+
+
+<h4>Plan</h4>
+
+<% if @plan.contract_type == 1 %>
+
+	<div class="row">	
+		<div class="col-md-4 mb-4">
+			<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
+				<%=form.label :training %> <br>
+				<%=form.text_area(:training, rows: 20, cols: 50) %>
+				<br>
+				<%= form.submit 'editar' %>
+				<br>
+				<%= link_to 'volver a user contracts', user_contracts_path %>
+			<% end %>
+		</div>
+	</div>
+
+<% elsif @plan.contract_type == 2 %>
+
+	<div class="row">	
+		<div class="col-md-4 mb-4">
+			<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
+				<%=form.label :nutrition %> <br>
+				<%=form.text_area(:nutrition, rows: 20, cols: 50) %>
+				<br>
+				<%= form.submit 'editar' %>
+				<br>
+				<%= link_to 'volver a user contracts', user_contracts_path %>
+			<% end %>
+		</div>
+	</div>
+
+<% else %>
+
+	<div class="row">	
+		<div class="col-md-4 mb-4">
+		<%=form_with(model: [@plan, @contract, @user ,@program], local: true) do |form| %>
+			<%=form.label :training %> <br>
+			<%=form.text_area(:training, rows: 20, cols: 50) %>
+			<br>
+			<%=form.label :nutrition %> <br>
+			<%=form.text_area(:nutrition, rows: 20, cols: 50) %>
+			<br>
+			<%= form.submit 'editar' %>
+			<br>
+			<%= link_to 'volver a user contracts', user_contracts_path %>
+			<% end %>
+		</div>
+	</div>
+
+<% end %>

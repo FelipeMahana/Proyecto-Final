@@ -8,14 +8,14 @@
 
 <% if current_user.contracts.last.plan.contract_type==1 %>
 	<h5>Rutina entrenamiento</h5>
-	<%= current_user.contracts.last.programs.last.training %>
+	<p><%= current_user.contracts.last.programs.last.training %></p>
 <% elsif current_user.contracts.last.plan.contract_type==2 %>
 	<h5>Plan Nutricional</h5>
-	<%= current_user.contracts.last.programs.last.nutrition %>
+	<p><%= current_user.contracts.last.programs.last.nutrition %></p>
 <% else %>
 	<h5>Rutina entrenamiento</h5>
-	<%= current_user.contracts.last.programs.last.training %>
+	<p><%= current_user.contracts.last.programs.last.training %></p>
 	<h5>Plan Nutricional</h5>
-	<%= current_user.contracts.last.programs.last.nutrition %>
+	<p><%= current_user.contracts.last.programs.last.nutrition %></p>
 <% end %>
 
