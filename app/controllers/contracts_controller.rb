@@ -18,6 +18,37 @@ class ContractsController < ApplicationController
 
 	def update
 		@contract.plan_id = params[:plan_id]
+		####---en caso de modificacion de datos---####
+		##Calculo del metabolismo basal, falta nivel de actividad fisica##
+		if @contract.fat_percentage.present?
+			#lbm = lean body mass#
+			if @contract.sex == 1
+				lbm= (0.32810 * @contract.weight) + (0.33929 * @contract.height) - 29.5336
+			else
+				lbm= (0.29569 * @contract.weight) + (0.41813 * @contract.height) - 43.2933
+			end
+			@contract.bmr= 370 + (21.6 * lbm)
+		else
+			if @contract.sex == 1
+				@contract.bmr= ((10 * @contract.weight)+(6.25 * @contract.height)-(5 * @contract.age)+5)
+			else
+				@contract.bmr= ((10 * @contract.weight)+(6.25 * @contract.height)-(5 * @contract.age)-161)
+			end
+		end
+		## aprox maximum heart rate##
+		@contract.heart_rate = 220 - @contract.age
+		#calculo expendio calorico diario
+		if @contract.activity_level == 1
+			@contract.bmr *= 1.25
+		elsif @contract.activity_level == 2
+			@contract.bmr *= 1.375
+		elsif @contract.activity_level == 3
+			@contract.bmr *= 1.55
+		elsif @contract.activity_level == 4
+			@contract.bmr *= 1.725
+		else 
+			@contract.bmr *= 1.95
+		end				
 		@contract.update(set_params)
 		redirect_to plan_contract_path(@contract.plan_id, @contract)
 	end
@@ -26,6 +57,24 @@ class ContractsController < ApplicationController
 		@contract = Contract.new(set_params)
 		@contract.plan_id = params[:plan_id]
 		@contract.user_id = current_user.id
+		##Calculo del metabolismo basal, falta nivel de actividad fisica##
+		if @contract.fat_percentage.present?
+			#lbm = lean body mass#
+			if @contract.sex == 1
+				lbm= (0.32810 * @contract.weight) + (0.33929 * @contract.height) - 29.5336
+			else
+				lbm= (0.29569 * @contract.weight) + (0.41813 * @contract.height) - 43.2933
+			end
+			@contract.bmr= 370 + (21.6 * lbm)
+		else
+			if @contract.sex == 1
+				@contract.bmr= ((10 * @contract.weight)+(6.25 * @contract.height)-(5 * @contract.age)+5)
+			else
+				@contract.bmr= ((10 * @contract.weight)+(6.25 * @contract.height)-(5 * @contract.age)-161)
+			end
+		end
+		## aprox maximum heart rate##
+		@contract.heart_rate = 220 - @contract.age
 		# segun flujo debe ir el true en update, ya que este es el que se ocupa, para confirmar datos, o en el futuro debe ser en el de paypal?
 		@contract.pending = true
 		@contract.save

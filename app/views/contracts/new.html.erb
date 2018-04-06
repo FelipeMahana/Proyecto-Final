@@ -1,46 +1,59 @@
-<h4>Formualrio</h4>
+<h4>Formualrio Primera parte</h4>
+<h5>Datos basicos</h5>
 
 <div class="row">	
 	<div class="col-md-4 mb-4">
 		<%=form_with(model: [@plan, @contract], local: true) do |form| %>
-			<%=form.label :weight %> <br>
+			<%=form.label :peso %> 
+			<em>(Kg)</em><br>
 			<%=form.number_field :weight %>
 			<br>
-			<%=form.label :height %> <br>
+			<%=form.label :estatura %>
+			<em>(Cms)</em> <br>
 			<%=form.number_field :height %>
 			<br>
-			<%=form.label :age %> <br>
+			<%=form.label :edad %> <br>
 			<%=form.number_field :age, in: 1...131 %>
 			<br>
-			<%=form.label :sex %> <br>
+			<!-- 1 es hombre y 2 es mujer -->
+			<%=form.label :sexo %> <br>
 			<%=form.number_field :sex, in: 1...3 %>
+			
 			<br>
-			<%=form.label :activity_level %> <br>
-			<%=form.select(:activity_level, options_for_select([['opcion 1', 1], ['opcion 2', 2], ['opcion 3', 3], ['opcion 4', 4], ['opcion 5', 5]])) %>
-			<br>
-			<%=form.label :fat_percentage %> <br>
+			<%=form.label :porcentaje_de_grasa %>
+			<em>(Opcional)</em> <br>
 			<%=form.number_field :fat_percentage, in: 1...101 %>
 			<br>
-			<%=form.label :bmi %> <br>
-			<%=form.number_field :bmi %>
+			<%#=form.label :nivel_actividad_fisica %> <br>
+			<%#=form.select(:activity_level, options_for_select([['opcion 1', 1], ['opcion 2', 2], ['opcion 3', 3], ['opcion 4', 4], ['opcion 5', 5]])) %>
+			<!-- BMI creo que es inutil -->
+			<%#=form.label :indice_masa_corporal %>
+			<!-- <em>(Opcional)</em> <br> -->
+			<%#=form.number_field :bmi %>
 			<br>
-			<%=form.label :disease %> <br>
-			<%=form.text_field :disease %>
+			<!-- de aqui en adelante al proximo formulario -->
+			<%#=form.label :enfermedades %>
+			<!-- <em>(Opcional)</em> <br> -->
+			<%#=form.text_field :disease %>
 			<br>
-			<%=form.label :allergies %> <br>
-			<%=form.text_field :allergies %>
+			<%#=form.label :alergias %>
+			<!-- <em>(Opcional)</em> <br> -->
+			<%#=form.text_field :allergies %>
 			<br>
-			<%=form.label :bmr %> <br>
-			<%=form.number_field :bmr %>
+			<!-- Vamos a calcularlo por back -->
+			<%#=form.label :metabolismo_basal %> <br>
+			<%#=form.number_field :bmr %>
 			<br>
-			<%=form.label :karvonen %> <br>
-			<%=form.number_field :karvonen %>
+			<!-- inutil, necesita muchos datos para la persona -->
+			<%#=form.label :karvonen %> <br>
+			<%#=form.number_field :karvonen %>
 			<br>
-			<%=form.label :heart_rate %> <br>
-			<%=form.number_field :heart_rate %>
+			<!-- calculada en back -->
+			<%#=form.label :heart_rate %> <br>
+			<%#=form.number_field :heart_rate %>
 			<br>
-			<%=form.label :goal %> <br>
-			<%=form.text_area :goal %>
+			<%#=form.label :goal %> <br>
+			<%#=form.text_area :goal %>
 			<br>
 			<%= form.submit 'crear' %>
 			<br>

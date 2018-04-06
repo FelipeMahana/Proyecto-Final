@@ -5,20 +5,20 @@
 		<h5>Datos Cliente</h5>
 		<div class="card">
 			<div class="card-body text-center">	
-				<h5 class="card-title"> <%= current_user.email %> </h5>
-				<p class="card-text"> <%= @contract.weight %> </p>
-				<p class="card-text"> <%= @contract.height %> </p>
-				<p class="card-text"> <%= @contract.age %> </p>
-				<p class="card-text"> <%= @contract.sex %> </p>
-				<p class="card-text"> <%= @contract.activity_level %> </p>
-				<p class="card-text"> <%= @contract.fat_percentage %> </p>
+				<h5 class="card-title"> Correo: <%= current_user.email %> </h5>
+				<p class="card-text"> Peso:<%= @contract.weight %> </p>
+				<p class="card-text"> Estatura: <%= @contract.height %> </p>
+				<p class="card-text"> Edad:<%= @contract.age %> </p>
+				<p class="card-text"> Sexo:<%= @contract.sex %> </p>
+				<p class="card-text"> Nivel actividad fisica:<%= @contract.activity_level %> </p>
+				<p class="card-text"> Porcentaje Grasa:<%= @contract.fat_percentage %> </p>
 				<p class="card-text"> <%= @contract.bmi %> </p>
-				<p class="card-text"> <%= @contract.disease %> </p>
-				<p class="card-text"> <%= @contract.allergies %> </p>
-				<p class="card-text"> <%= @contract.bmr %> </p>
+				<p class="card-text"> Enfermedades:<%= @contract.disease %> </p>
+				<p class="card-text"> Alergias:<%= @contract.allergies %> </p>
+				<p class="card-text"> Metabolismo Basal:<%= @contract.bmr %> </p>
 				<p class="card-text"> <%= @contract.karvonen %> </p>
-				<p class="card-text"> <%= @contract.heart_rate %> </p>
-				<p class="card-text"> <%= @contract.goal %> </p>
+				<p class="card-text"> Frecuencia cardiaca Max:<%= @contract.heart_rate %> </p>
+				<p class="card-text"> Objetivo:<%= @contract.goal %> </p>
 		 	</div>
 		</div>
 	</div>
