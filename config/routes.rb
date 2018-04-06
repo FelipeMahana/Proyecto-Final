@@ -16,6 +16,12 @@ Rails.application.routes.draw do
         end 
       end
     end
+
+    resources :billings, only: [] do
+      collection do
+        get 'pre_pay'
+      end
+    end
    	
     get 'profile', to: 'plans#profile'
    	get 'user_contracts', to: 'plans#user_contracts'

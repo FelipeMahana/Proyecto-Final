@@ -19,7 +19,10 @@ class ContractsController < ApplicationController
 	def update
 		@contract.plan_id = params[:plan_id]
 		@contract.update(set_params)
-		redirect_to plan_contract_path(@contract.plan_id, @contract)
+		#esto a paypal
+		redirect_to pre_pay_billings_path
+		#esto va a show
+		#redirect_to plan_contract_path(@contract.plan_id, @contract)
 	end
 
 	def create
