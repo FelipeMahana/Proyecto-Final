@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :plans, only: [:index, :user_contracts] do
      	resources  :contracts, only: [:index, :show, :create, :new, :edit, :update] do
         resources :user, only: [] do
-          resources :programs, only: [:new,:create, :edit, :show]
+          resources :programs, only: [:new,:create, :edit, :update, :show]
         end 
       end
     end

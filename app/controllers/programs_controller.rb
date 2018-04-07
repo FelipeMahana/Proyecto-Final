@@ -1,9 +1,9 @@
 class ProgramsController < ApplicationController
     before_action :authenticate_user!, only: [:index, :new, :user_programs]
-    before_action :set_program, only: [:edit, :show]
-	before_action :set_user, only: [:new, :edit, :show]
-	before_action :set_contract, only: [:new,:create, :edit, :show]
-	before_action :set_plan, only: [:new, :edit, :show]
+    before_action :set_program, only: [:edit, :show, :update]
+	before_action :set_user, only: [:new, :edit, :show, :update]
+	before_action :set_contract, only: [:new,:create, :edit, :show, :update]
+	before_action :set_plan, only: [:new, :edit, :show, :update]
     before_action :program_params, only: [:create, :update]
     
 	
@@ -16,26 +16,26 @@ class ProgramsController < ApplicationController
     end
 
     def edit
-        
+      
     end
 
     def show
 
     end
 
-    def update
-        raise
-        @program.plan_id = params[:plan_id]
+    def update  
+        #@program.plan_id = params[:plan_id]
         @program.contract_id = params[:contract_id]
-        @program.user_id = params[:user_id]
+        #@program.user_id = params[:user_id]
         @program.update(program_params)
-        redirect_to plan_contract_user_program_path(@program.plan_id,@program.contract_id,@program.user_id,@program), notice: 'El programa se a actualizado con exito'
-        # raise
-        # if @program.update(program_params)
-        #     redirect_to plan_contract_user_program_path(@program.plan_id,@program.contract_id,@program.user_id,@program), notice: 'El programa se a actualizado con exito'
-        # else
-        #     redirect_to plan_contract_user_programs_path(), notice: 'El programa no se a actualizado con exito'
-        # end
+        
+        if @program.update(program_params)
+            redirect_to user_programs_path, notice: 'El programa se a actualizado con exito'
+            #redirect_to plan_contract_user_program_path(@program.plan_id,@program.contract_id,@program.user_id,@program), notice: 'El programa se a actualizado con exito'
+        else
+            redirect_to user_programs_path, notice: 'El programa no se a actualizado con exito'
+            #redirect_to plan_contract_user_programs_path(), notice: 'El programa no se a actualizado con exito'
+        end
     end
 
     def create

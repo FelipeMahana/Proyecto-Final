@@ -6,16 +6,20 @@
 	<h5>  <%= current_user.email %> </h5>
 <% end %>
 
-<% if current_user.contracts.last.plan.contract_type==1 %>
-	<h5>Rutina entrenamiento</h5>
-	<p><%= current_user.contracts.last.programs.last.training %></p>
-<% elsif current_user.contracts.last.plan.contract_type==2 %>
-	<h5>Plan Nutricional</h5>
-	<p><%= current_user.contracts.last.programs.last.nutrition %></p>
+<% if current_user.contracts.last.try(:programs).present? %>
+	<% if current_user.contracts.last.plan.contract_type==1 %>
+		<h5>Rutina entrenamiento</h5>
+		<p><%= current_user.contracts.last.programs.last.training %></p>
+	<% elsif current_user.contracts.last.plan.contract_type==2 %>
+		<h5>Plan Nutricional</h5>
+		<p><%= current_user.contracts.last.programs.last.nutrition %></p>
+	<% else %>
+		<h5>Rutina entrenamiento</h5>
+		<p><%= current_user.contracts.last.programs.last.training %></p>
+		<h5>Plan Nutricional</h5>
+		<p><%= current_user.contracts.last.programs.last.nutrition %></p>
+	<% end %>
 <% else %>
-	<h5>Rutina entrenamiento</h5>
-	<p><%= current_user.contracts.last.programs.last.training %></p>
-	<h5>Plan Nutricional</h5>
-	<p><%= current_user.contracts.last.programs.last.nutrition %></p>
+	no tiene rutina de entrenamiento
 <% end %>
 
