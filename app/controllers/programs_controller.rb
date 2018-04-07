@@ -40,12 +40,12 @@ class ProgramsController < ApplicationController
 
     def create
     	@program = Program.new(program_params)
-        @program.contract_id = params[:contract_id]
+
+        @program.contract = @contract
         #debo cambiar el pending de contracta false, desde el metodo de otro controler
         @contract.pending = false
-        
-    	@program.save
-    	if @program.save
+
+    	if @program.save and @contract.save
              redirect_to user_contracts_path, notice: 'Se creo programa con exito'
         else
             redirect_to user_contracts_path, notice: 'No se pudo crear programa con exito'

@@ -1,11 +1,22 @@
 <h3>Perfil</h3>
 
 <% if current_user.name.present? %>
-	<h5>  <%= current_user.name %> </h5>
+	<p>  Nombre: <%= current_user.name %> </p>
+	<p>  Correo: <%= current_user.email %> </p>
 <% else %>
-	<h5>  <%= current_user.email %> </h5>
+	<p>  Correo: <%= current_user.email %> </p>
 <% end %>
+<h5>Datos</h5>
+<p>Edad: <%= current_user.contracts.last.age %></p> 
+<% if current_user.contracts.last.sex == 1 %>
+	<p> Sexo: Masculino </p>
+<% else %>
+	<p>Sexo: Femenino </p>
+<% end %>
+<p>Peso: <%= current_user.contracts.last.weight %> kg</p> 
+<p>Estatura: <%= current_user.contracts.last.height %> cms </p>
 
+<h4>Entrenamiento</h4>
 <% if current_user.contracts.last.try(:programs).present? %>
 	<% if current_user.contracts.last.plan.contract_type==1 %>
 		<h5>Rutina entrenamiento</h5>
@@ -20,6 +31,6 @@
 		<p><%= current_user.contracts.last.programs.last.nutrition %></p>
 	<% end %>
 <% else %>
-	no tiene rutina de entrenamiento
+	<p>No tiene rutina de entrenamiento</p>
 <% end %>
 

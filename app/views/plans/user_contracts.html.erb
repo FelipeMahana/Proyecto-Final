@@ -14,8 +14,8 @@
   <tbody>
     <!-- En que orden hacerlo, si creciente o decreciente, el pending es para ver a quien no se a echo rutina -->
     <% @users.order("created_at").each do |user| %>
-      <% if user.contracts.present? %>
-      <%# if user.contracts.present? and user.contracts.last.pending == true %>
+      <%# if user.contracts.present? %>
+      <% if user.contracts.present? and user.contracts.last.pending == true %>
       <%= user.contracts.last.pending %>        
         <tr>
           <% if user.name.present? %>
