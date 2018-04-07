@@ -16,7 +16,7 @@ class ProgramsController < ApplicationController
     end
 
     def edit
-
+        
     end
 
     def show
@@ -29,11 +29,13 @@ class ProgramsController < ApplicationController
         @program.contract_id = params[:contract_id]
         @program.user_id = params[:user_id]
         @program.update(program_params)
-        if @program.update(program_params)
-            redirect_to user_programs_path, notice: 'El programa se a actualizado con exito'
-        else
-            redirect_to user_programs_path, notice: 'El programa no se a actualizado con exito'
-        end
+        redirect_to plan_contract_user_program_path(@program.plan_id,@program.contract_id,@program.user_id,@program), notice: 'El programa se a actualizado con exito'
+        # raise
+        # if @program.update(program_params)
+        #     redirect_to plan_contract_user_program_path(@program.plan_id,@program.contract_id,@program.user_id,@program), notice: 'El programa se a actualizado con exito'
+        # else
+        #     redirect_to plan_contract_user_programs_path(), notice: 'El programa no se a actualizado con exito'
+        # end
     end
 
     def create
