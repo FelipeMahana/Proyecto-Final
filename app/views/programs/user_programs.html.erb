@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @programs.each do |program| %>
+    <% @programs.order("created_at").each do |program| %>
         <tr>
           <% if program.contract.user.name.present? %>
             <td><%= program.contract.user.name %></td>

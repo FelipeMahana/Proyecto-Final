@@ -24,36 +24,6 @@
 			<em>(Opcional)</em> <br>
 			<%=form.number_field :fat_percentage, in: 1...101 %>
 			<br>
-			<%#=form.label :nivel_actividad_fisica %> <br>
-			<%#=form.select(:activity_level, options_for_select([['opcion 1', 1], ['opcion 2', 2], ['opcion 3', 3], ['opcion 4', 4], ['opcion 5', 5]])) %>
-			<!-- BMI creo que es inutil -->
-			<%#=form.label :indice_masa_corporal %>
-			<!-- <em>(Opcional)</em> <br> -->
-			<%#=form.number_field :bmi %>
-			<br>
-			<!-- de aqui en adelante al proximo formulario -->
-			<%#=form.label :enfermedades %>
-			<!-- <em>(Opcional)</em> <br> -->
-			<%#=form.text_field :disease %>
-			<br>
-			<%#=form.label :alergias %>
-			<!-- <em>(Opcional)</em> <br> -->
-			<%#=form.text_field :allergies %>
-			<br>
-			<!-- Vamos a calcularlo por back -->
-			<%#=form.label :metabolismo_basal %> <br>
-			<%#=form.number_field :bmr %>
-			<br>
-			<!-- inutil, necesita muchos datos para la persona -->
-			<%#=form.label :karvonen %> <br>
-			<%#=form.number_field :karvonen %>
-			<br>
-			<!-- calculada en back -->
-			<%#=form.label :heart_rate %> <br>
-			<%#=form.number_field :heart_rate %>
-			<br>
-			<%#=form.label :goal %> <br>
-			<%#=form.text_area :goal %>
 			<br>
 			<%= form.submit 'crear' %>
 			<br>

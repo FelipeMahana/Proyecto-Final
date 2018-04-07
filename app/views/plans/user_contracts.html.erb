@@ -1,5 +1,4 @@
-<h4>Tabla con usuarios con sus planes contratados</h4>
-<h5>Pensar el orden</h5> 
+<h4>Tabla con usuarios con sus planes contratados</h4> 
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -43,6 +42,7 @@
           <td>
               <% unless user.contracts.last.nil? %>
                 <% start_date_conract=user.contracts.last.created_at %>
+                <%#= user.contracts.last.created_at %>
                 <%= user.contracts.last.created_at.strftime('%d/%m/%Y') %>
               <% end %>
           </td>

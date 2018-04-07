@@ -57,7 +57,6 @@ class ContractsController < ApplicationController
 		@contract = Contract.new(set_params)
 		@contract.plan_id = params[:plan_id]
 		@contract.user_id = current_user.id
-		##Calculo del metabolismo basal, falta nivel de actividad fisica##
 		if @contract.fat_percentage.present?
 			#lbm = lean body mass#
 			if @contract.sex == 1

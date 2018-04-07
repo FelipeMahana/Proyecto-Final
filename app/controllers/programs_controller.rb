@@ -1,10 +1,11 @@
 class ProgramsController < ApplicationController
     before_action :authenticate_user!, only: [:index, :new, :user_programs]
-    before_action :set_program, only: [:edit]
-	before_action :set_user, only: [:new, :edit]
-	before_action :set_contract, only: [:new,:create, :edit]
-	before_action :set_plan, only: [:new, :edit]
-    before_action :program_params, only: [:create]
+    before_action :set_program, only: [:edit, :show]
+	before_action :set_user, only: [:new, :edit, :show]
+	before_action :set_contract, only: [:new,:create, :edit, :show]
+	before_action :set_plan, only: [:new, :edit, :show]
+    before_action :program_params, only: [:create, :update]
+    
 	
     def user_programs
         @programs = Program.all
@@ -15,15 +16,24 @@ class ProgramsController < ApplicationController
     end
 
     def edit
-        #@program.plan_id = params[:plan_id]
-        #@program.contract_id = params[:contract_id]
-        #@program.user_id = params[:user_id]
-        #@program.update(program_params)
-        #if @program.update(program_params)
-        #    redirect_to user_programs_path, notice: 'El programa se a actualizado con exito'
-        #else
-        #    redirect_to user_programs_path, notice: 'El programa no se a actualizado con exito'
-        #end
+
+    end
+
+    def show
+
+    end
+
+    def update
+        raise
+        @program.plan_id = params[:plan_id]
+        @program.contract_id = params[:contract_id]
+        @program.user_id = params[:user_id]
+        @program.update(program_params)
+        if @program.update(program_params)
+            redirect_to user_programs_path, notice: 'El programa se a actualizado con exito'
+        else
+            redirect_to user_programs_path, notice: 'El programa no se a actualizado con exito'
+        end
     end
 
     def create
@@ -43,7 +53,7 @@ class ProgramsController < ApplicationController
     private
 
     def program_params	 
-		params.require(:program).permit(:training, :nutrition)
+		params.require(:program).permit(:training, :nutrition, :plan_id, :contract_id, :user_id)
 	end
 
     def set_program
