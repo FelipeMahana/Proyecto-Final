@@ -1,39 +1,5 @@
 class BillingsController < ApplicationController
 	def pre_pay
-		# #price = current_user.contracts.last.plan.price
-		# orders = current_user.contracts
-		# items = orders.map do |order|
-		# 	 item = {}
-		# 	 if order.plan.contract_type == 1
-		# 	 	item[:name] = "Plan Entrenamiento"
-		# 	 elsif order.plan.contract_type == 2
-		# 	 	item[:name] = "Plan Nutricion"
-		# 	 else	
-		# 	 	item[:name] = "Plan Entrenamiento y Nutricion"
-		# 	 end
-		# 	 item[:sku] = order.id.to_s
-		# 	 item[:price] = order.plan.price.to_s
-		# 	 item[:currency] = 'USD'
-		# 	 item[:quantity] = 1
-		# 	 item
-		# end
-
-		# @payment = PayPal::SDK::REST::Payment.new({
-		#   :intent =>  "sale",
-		#   :payer =>  {
-		#     :payment_method =>  "paypal" },
-		#   :redirect_urls => {
-		#     :return_url => "http://localhost:3000/payment/execute",
-		#     :cancel_url => "http://localhost:3000/" },
-		#   :transactions =>  [{
-		#     :item_list => {
-		#       :items => items 
-		#       },
-		#     :amount =>  {
-		#       :total =>  orders.try(:plan).try(:price).to_s,
-		#       :currency =>  "USD" },
-		#     :description =>  "This is the payment transaction description." }]})
-
 		@payment = PayPal::SDK::REST::Payment.new({
 		  :intent =>  "sale",
 		  :payer =>  {
@@ -73,7 +39,7 @@ class BillingsController < ApplicationController
 			amount = paypal_payment.transactions.first.amount.total
 
 			billing = Billing.create(
-				user: current_user,
+				user_id: current_user,
 				code: paypal_payment.id,
 				payment_method: 'paypal',
 				amount: amount,
