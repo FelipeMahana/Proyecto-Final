@@ -1,4 +1,4 @@
-<h4>Tabla con usuarios con sus planes contratados</h4> 
+<h4>Tabla de usuarios con planes pendientes</h4> 
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -12,11 +12,8 @@
   </thead>
 
   <tbody>
-    <!-- En que orden hacerlo, si creciente o decreciente, el pending es para ver a quien no se a echo rutina -->
     <% @users.order("created_at").each do |user| %>
-      <%# if user.contracts.present? %>
-      <% if user.contracts.present? and user.contracts.last.pending == true %>
-      <%= user.contracts.last.pending %>        
+      <% if user.contracts.present? and user.contracts.last.pending == true %>        
         <tr>
           <% if user.name.present? %>
             <td><%= user.name %></td>
