@@ -3,8 +3,9 @@
   <head>
     <title>Proyecto</title>
     <%= csrf_meta_tags %>
-    
+    <!-- fav icon -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <!-- jquery -->
     <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -19,7 +20,7 @@
     <%= render 'share/navbar' %>
 
     <% if notice.present? %>
-      <div class="alert alert-success" role="alert">
+      <div class="notice notice-success" role="notice">
         <%= notice %>
       </div>  
     <% end %>

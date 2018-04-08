@@ -3,7 +3,7 @@ class ContractsController < ApplicationController
 	before_action :set_params, only: [:create, :update]
 	before_action :set_plan, only: [:new, :edit, :update]
 	before_action :set_contract, only: [:edit, :show, :update]
-	
+
 	def new
 		@contract = Contract.new
 	end
@@ -62,7 +62,7 @@ class ContractsController < ApplicationController
 		if @contract.save
              redirect_to edit_plan_contract_path(@contract.plan.id, @contract), notice: 'Se creo contrato con exito'
        else
-             redirect_to new_plan_contract_path(@contract.plan_id), notice: 'No se pudo crear sitio '
+             redirect_to new_plan_contract_path(@contract.plan_id), notice: 'No se pudo crear contrato'
        end 
 	end
 

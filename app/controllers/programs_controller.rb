@@ -5,7 +5,7 @@ class ProgramsController < ApplicationController
 	before_action :set_contract, only: [:new,:create, :edit, :show, :update]
 	before_action :set_plan, only: [:new, :edit, :show, :update]
     before_action :program_params, only: [:create, :update]
-    
+    authorize_resource
 	
     def user_programs
         @programs = Program.all
@@ -24,17 +24,12 @@ class ProgramsController < ApplicationController
     end
 
     def update  
-        #@program.plan_id = params[:plan_id]
         @program.contract_id = params[:contract_id]
-        #@program.user_id = params[:user_id]
-        @program.update(program_params)
-        
+        @program.update(program_params)    
         if @program.update(program_params)
             redirect_to user_programs_path, notice: 'El programa se a actualizado con exito'
-            #redirect_to plan_contract_user_program_path(@program.plan_id,@program.contract_id,@program.user_id,@program), notice: 'El programa se a actualizado con exito'
         else
-            redirect_to user_programs_path, notice: 'El programa no se a actualizado con exito'
-            #redirect_to plan_contract_user_programs_path(), notice: 'El programa no se a actualizado con exito'
+            redirect_to user_programs_path, notice: 'El programa no se a actualizado'
         end
     end
 
@@ -46,7 +41,7 @@ class ProgramsController < ApplicationController
     	if @program.save and @contract.save
              redirect_to user_contracts_path, notice: 'Se creo programa con exito'
         else
-            redirect_to user_contracts_path, notice: 'No se pudo crear programa con exito'
+            redirect_to user_contracts_path, notice: 'No se pudo crear programa'
         end
     end
 

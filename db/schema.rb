@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404215534) do
+ActiveRecord::Schema.define(version: 20180408044701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "billings", force: :cascade do |t|
+    t.string "code"
+    t.string "payment_method"
+    t.decimal "amount", precision: 10, scale: 2
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_billings_on_user_id"
+  end
 
   create_table "contracts", force: :cascade do |t|
     t.float "weight"
@@ -34,6 +45,8 @@ ActiveRecord::Schema.define(version: 20180404215534) do
     t.integer "age"
     t.integer "sex"
     t.boolean "pending", default: false
+    t.bigint "billing_id"
+    t.index ["billing_id"], name: "index_contracts_on_billing_id"
     t.index ["plan_id"], name: "index_contracts_on_plan_id"
     t.index ["user_id"], name: "index_contracts_on_user_id"
   end
@@ -74,10 +87,13 @@ ActiveRecord::Schema.define(version: 20180404215534) do
     t.integer "user_type", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "billings", "users"
+  add_foreign_key "contracts", "billings"
   add_foreign_key "contracts", "plans"
   add_foreign_key "contracts", "users"
   add_foreign_key "programs", "contracts"
