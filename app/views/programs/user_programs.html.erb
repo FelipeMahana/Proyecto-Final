@@ -5,50 +5,46 @@
     <tr>
       <th>Usuario</th>
       <th>Plan</th>
-      <th>Fecha Contrato</th>
-      <th>Duracion Plan(mes)</th>
-      <th>Fecha Termino Plan</th>
+      <th>Duracion</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @programs.order("created_at").each do |program| %>
-        <tr>
-          <% if program.contract.user.name.present? %>
-            <td><%= program.contract.user.name %></td>
-          <% else %>  
-            <td><%= program.contract.user.email %></td>
-          <% end %>
-          <td>
-            <%= program.contract.plan.contract_type %>
-          </td>
-
-          <td>
-            <% start_date_program_contract = program.contract.created_at %>
-            <%= program.contract.created_at.strftime('%d/%m/%Y') %>
-          </td>
-
-          <td>
-            <% duration_program_date_plan = program.contract.plan.duration.month %>
-            <%= program.contract.plan.duration %>
-          </td>
-
-          <td>
-            <% end_date_proram_contract=(start_date_program_contract + duration_program_date_plan) %>
-            <%= end_date_proram_contract.strftime('%d/%m/%Y') %>
-          </td>
-
-          <td>
-             <!-- revisar parametros -->
-            <%= program.contract.plan.id %>
-            <%= program.contract.id %>
-            <%= program.contract.user.id %>
-            <%= program.id %>
-            
-            <%= link_to "Editar", edit_plan_contract_user_program_path(program.contract.plan.id,program.contract.id,program.contract.user.id,program.id) %>
+      <%# @users.each do |user| %>
+          <tr>
+            <% if program.contract.user.name.present? %>
+              <td><%= program.contract.user.name %></td>
+            <% else %>  
+              <td><%= program.contract.user.email %></td>
+            <% end %>
+            <td>
+              <% if program.contract.plan.contract_type == 1 %>
+                Plan Entrenamiento
+              <% elsif program.contract.plan.contract_type == 2 %>
+                Plan Nutricional
+              <% else %>
+                Plan Entrenamiento y Nutricional
+              <% end %>
             </td>
-        </tr>      
+
+            <td>
+              <%= program.contract.plan.duration %>
+            </td>
+
+
+            <td>
+               <!-- revisar parametros -->
+              <%= program.contract.plan.id %>
+              <%= program.contract.id %>
+              <%= program.contract.user.id %>
+              <%= program.id %>
+              
+              <%= link_to "Editar", edit_plan_contract_user_program_path(program.contract.plan.id,program.contract.id,program.contract.user.id,program.id) %>
+              </td>
+          </tr>
+        <%# end %>      
     <% end %>
   </tbody>
 </table>

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       end
     end
    	
+    get 'contact', to: 'plans#contact'
+    get 'terms_and_conditions', to: 'plans#terms_and_conditions'
     get 'profile', to: 'plans#profile'
    	get 'user_contracts', to: 'plans#user_contracts'
     get 'user_programs', to: 'programs#user_programs' 

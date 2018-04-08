@@ -6,10 +6,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="#">Contactanos</a>
+          <%= link_to "Contactos", contact_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Términos y Condiciones</a>
+          <%= link_to "Terminos y Condiciones",terms_and_conditions_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
           <%= link_to "Contratos", user_contracts_path, class: 'nav-link'%>

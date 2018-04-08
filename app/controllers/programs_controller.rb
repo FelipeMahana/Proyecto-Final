@@ -40,9 +40,7 @@ class ProgramsController < ApplicationController
 
     def create
     	@program = Program.new(program_params)
-
         @program.contract = @contract
-        #debo cambiar el pending de contracta false, desde el metodo de otro controler
         @contract.pending = false
 
     	if @program.save and @contract.save

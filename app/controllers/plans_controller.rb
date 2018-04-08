@@ -8,6 +8,14 @@ class PlansController < ApplicationController
   	
   end
 
+  def contact
+
+  end
+
+  def terms_and_conditions
+
+  end
+
   def user_contracts
   	@users = User.all
   end
