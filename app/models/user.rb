@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :contracts
   has_many :plans, through: :contracts
+
+  enum role: [:guest ,:professional, :admin]
 end

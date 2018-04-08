@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
     
     resources :plans, only: [:index, :user_contracts] do
-     	resources  :contracts, only: [:index, :show, :create, :new, :edit, :update] do
+      resources  :contracts, only: [:index, :show, :create, :new, :edit, :update] do
         resources :user, only: [] do
-          resources :programs, only: [:new,:create, :edit, :show]
+          resources :programs, only: [:new,:create, :edit, :update, :show]
         end 
       end
     end
@@ -24,9 +24,11 @@ Rails.application.routes.draw do
       end
     end
    	
+    get 'contact', to: 'plans#contact'
+    get 'terms_and_conditions', to: 'plans#terms_and_conditions'
     get 'profile', to: 'plans#profile'
-   	get 'user_contracts', to: 'plans#user_contracts'
+    get 'user_contracts', to: 'plans#user_contracts'
     get 'user_programs', to: 'programs#user_programs' 
-   	root 'plans#index'
+    root 'plans#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

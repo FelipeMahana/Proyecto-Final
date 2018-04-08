@@ -1,47 +1,41 @@
+<h4>Formualrio Segunda parte</h4>
 <h4>Confirmar Datos</h4>
 
-<h5>Edición</h5>
+<!-- eliminar de base de datos bmi, karvonen -->
 
 <div class="row">	
 	<div class="col-md-4 mb-4">
 		<%=form_with(model: [@plan, @contract], local: true) do |form| %>
-			<%=form.label :weight %> <br>
+			<%=form.label :peso %>
+			<em>(Kg)</em> <br>
 			<%=form.number_field :weight %>
 			<br>
-			<%=form.label :height %> <br>
+			<%=form.label :estatura %>
+			<em>(Cms)</em> <br>
 			<%=form.number_field :height %>
 			<br>
-			<%=form.label :age %> <br>
+			<%=form.label :edad %> <br>
 			<%=form.number_field :age, in: 1...131 %>
 			<br>
-			<%=form.label :sex %> <br>
-			<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]])) %>
-			<br>
-			<%=form.label :activity_level %> <br>
-			<%=form.select(:activity_level, options_for_select([['opcion 1', 1], ['opcion 2', 2], ['opcion 3', 3], ['opcion 4', 4], ['opcion 5', 5]])) %>
-			<br>
-			<%=form.label :fat_percentage %> <br>
+			<%=form.label :porcentaje_de_grasa %>
+			<em>(Opcional)</em> <br>
 			<%=form.number_field :fat_percentage, in: 1...101 %>
 			<br>
-			<%=form.label :bmi %> <br>
-			<%=form.number_field :bmi %>
+			<%=form.label :sexo %> <br>
+			<%=form.select(:sex, options_for_select([['Hombre', 1], ['Mujer', 2]])) %>
 			<br>
-			<%=form.label :disease %> <br>
+			<%=form.label :nivel_actividad_fisica %> <br>
+			<%=form.select(:activity_level, options_for_select([['Sedentario (trabajo oficina)', 1], ['Ejercicio Liviano(1-2 dias/semana)', 2], ['Ejercicio Moderado(3-5 dias/semana)', 3], ['Ejercicio Pesado(6-7 dias/semana)', 4], ['Atleta', 5]])) %>
+			<br>
+			<%=form.label :enfermedades %>
+			<em>(Opcional)</em> <br>
 			<%=form.text_field :disease %>
 			<br>
-			<%=form.label :allergies %> <br>
+			<%=form.label :alergias %>
+			<em>(Opcional)</em> <br>
 			<%=form.text_field :allergies %>
 			<br>
-			<%=form.label :bmr %> <br>
-			<%=form.number_field :bmr %>
-			<br>
-			<%=form.label :karvonen %> <br>
-			<%=form.number_field :karvonen %>
-			<br>
-			<%=form.label :heart_rate %> <br>
-			<%=form.number_field :heart_rate %>
-			<br>
-			<%=form.label :goal %> <br>
+			<%=form.label :objetivo %> <br>
 			<%=form.text_area :goal %>
 			<br>
 			<%= form.submit 'Pagar' %>
