@@ -51,7 +51,9 @@ class ContractsController < ApplicationController
 		
 		@contract.pending = true					
 		@contract.update(set_params)
-		redirect_to plan_contract_path(@contract.plan_id, @contract)
+		#esto va a paypal
+		redirect_to pre_pay_billings_path
+		#redirect_to plan_contract_path(@contract.plan_id, @contract)
 	end
 
 	def create

@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'cancancan'
 gem 'devise'
 gem 'faker'
+gem 'paypal-sdk-rest'
+gem 'rails-erd', require: false, group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
