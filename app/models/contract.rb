@@ -1,8 +1,8 @@
 class Contract < ApplicationRecord
   has_many :programs, dependent: :destroy
-  belongs_to :user, dependent: :destroy 
-  belongs_to :plan, dependent: :destroy
-  belongs_to :billing, optional: true, dependent: :destroy
+  belongs_to :user 
+  belongs_to :plan
+  belongs_to :billing, optional: true
 
   	# Intentos fallidos
 	# def self.calculo_basal_metabolic_rate(fat_percentage,sex,weight,height,age)

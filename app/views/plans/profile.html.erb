@@ -1,5 +1,5 @@
-<h3>Perfil</h3>
 
+<h3>Perfil</h3>
 <% if current_user.name.present? %>
 	<p>  Nombre: <%= current_user.name %> </p>
 	<p>  Correo: <%= current_user.email %> </p>
@@ -33,4 +33,7 @@
 <% else %>
 	<p>No tiene rutina de entrenamiento</p>
 <% end %>
+
+
+
 
